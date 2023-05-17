@@ -1,0 +1,22 @@
+
+.game-square { 
+    height: 96%; 
+    text-align: center;
+    line-height: 0.85;
+    cursor: pointer;
+    background-color: azure;
+  }
+
+  p { 
+    display: inline;
+    margin: 0px;
+    font-size: 10rem;
+    overflow: hidden;
+    font-family: 'Sigmor', cursive;
+    font-weight: bold;
+  }
+
+  .noClick {
+    pointer-events: none;
+
+  }

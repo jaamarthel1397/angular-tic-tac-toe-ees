@@ -1,0 +1,47 @@
+p {
+    font-family: Lato;
+  }
+  
+  h1 {
+    transition: color .2s;
+    font-family: fantasy
+  }
+  h1 :leave {
+    transition: display 4s;
+  }
+  .header {
+      transition: color .2s;
+      font-family: 'Sigmor', cursive;
+      font-weight: bold;
+      font-size: 7rem;
+      margin-top: 100px;
+  }
+
+  header :leave {
+    transition: display 4s;
+  }
+
+  button {
+    border-radius: 25px;
+    border: solid 1px teal;
+    background-color: teal;
+    color: whitesmoke;
+    font-size: xx-large;
+    width: 150px;
+  }
+
+  .bt-div {
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+  }
+
+  .teal {
+    color: teal;
+  }
+
+  .orange {
+    color: orange;
+  }
+
+  
