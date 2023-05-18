@@ -10,13 +10,17 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatDialogModule } from '@angular/material/dialog';
 import { WinnerDialogComponent } from './winner-dialog/winner-dialog.component';
+import { PlayerNameDialogComponent } from './player-name-dialog/player-name-dialog.component';
+import { RestartDialogComponent } from './restart-dialog/restart-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BoardComponent,
     SquareComponent,
-    WinnerDialogComponent
+    WinnerDialogComponent,
+    PlayerNameDialogComponent,
+    RestartDialogComponent
   ],
   imports: [
     BrowserModule,

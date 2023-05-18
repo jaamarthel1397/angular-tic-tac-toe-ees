@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { WinnerDialogComponent } from './winner-dialog/winner-dialog.component';
+import { PlayerNameDialogComponent } from './player-name-dialog/player-name-dialog.component';
+import { RestartDialogComponent } from './restart-dialog/restart-dialog.component';
 
 @Injectable()
 export class GameService {
@@ -11,12 +13,15 @@ export class GameService {
   isGameRunning: boolean = false;
   isGameOver: boolean = false;
   winner: boolean = false;
+  playerOne: string = ' ';
+  playerTwo: string = ' ';
 
   constructor(public dialog: MatDialog) {
     this.newGame();
   }
 
   newGame() {
+    this.openNameDialog();
     this.activePlayer = 'X';
     this.turnCount = 0;
     this.isGameRunning = false;
@@ -42,14 +47,16 @@ export class GameService {
   }
 
   changePlayerTurn(squareClicked: any) {
-    console.log(squareClicked);
     this.updateBoard(squareClicked);
     if (!this.isGameOver)
-      this.activePlayer = this.activePlayer === 'X' ? 'O' : 'X';
+      this.activePlayer = this.activePlayer === 'X' ? '0' : 'X';
     this.turnCount++;
     this.isGameOver = this.isGameOver ? true : false;
     if (this.winner) {
-      this.openDialog();
+      this.openWinnerDialog();
+    }
+    if (this.gameOver && !this.winner){
+      this.openTieDialog();
     }
   }
 
@@ -60,6 +67,7 @@ export class GameService {
       this.isGameRunning = false;
       this.isGameOver = true;
     }
+    
   }
 
   get gameOver(): boolean {
@@ -110,12 +118,38 @@ export class GameService {
     return false;
   }
 
-  openDialog() {
-    this.dialog.open(WinnerDialogComponent, {
+  openNameDialog() {
+    const dialogRef = this.dialog.open(PlayerNameDialogComponent, {
       panelClass: "custom-popup",
       data: {
-        winner: this.activePlayer,
+        playerOne: this.playerOne,
+        playerTwo: this.playerTwo
       }
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.playerOne = result.playerOne,
+      this.playerTwo = result.playerTwo
+    })
+  }
+
+  openWinnerDialog() {
+    const dialogRef = this.dialog.open(WinnerDialogComponent, {
+      panelClass: "custom-popup",
+      data: {
+        winner: this.activePlayer == 'X' ? this.playerOne : this.playerTwo,
+      }
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.playerOne = '',
+      this.playerTwo = ''
+    })
+  }
+
+  openTieDialog() {
+    const dialogRef = this.dialog.open(RestartDialogComponent, {
+      panelClass: 'custom-popup'
     })
   }
 }

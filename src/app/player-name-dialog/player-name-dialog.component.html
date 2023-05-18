@@ -1,0 +1,9 @@
+<div class="nameDiv">
+    <p style="color: orange;">Ingrese el nombre del jugador X:</p>
+    <input matInput type="text" [(ngModel)]="data.playerOne"/>
+    <p style="color: teal;">Ingrese el nombre del jugador 0:</p>
+    <input matInput type="text" [(ngModel)]="data.playerTwo"/>
+    <button [mat-dialog-close]="data">
+        Comenzar
+    </button>
+</div>

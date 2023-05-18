@@ -1,7 +1,7 @@
 
-<div class="header text-center orange"
-[ngClass]="{'teal': gameService.activePlayer == 'O'}">
-    {{ gameService.activePlayer }}
+<div class="header text-center"
+[ngClass]="{'orange': gameService.activePlayer == 'X', 'teal': gameService.activePlayer == '0'}">
+   Turno de {{ gameService.activePlayer == 'X' ? gameService.playerOne : gameService.playerTwo }} ({{gameService.activePlayer}})
 </div>
   <app-board></app-board>
   <div class="bt-div">
